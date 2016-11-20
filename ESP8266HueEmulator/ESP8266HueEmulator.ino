@@ -28,8 +28,8 @@ unsigned int transitionTime = 800; // by default there is a transition time to t
 
 // Settings for the NeoPixels
 #define pixelCount 30
-#define pixelPin 2 // Strip is attached to GPIO2 on ESP-01
-NeoPixelBus<NeoGrbFeature, NeoEsp8266Uart800KbpsMethod> strip(pixelCount, pixelPin);
+// strip attached to GPIO3 - RX on wemos D1 mini
+NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod> strip(pixelCount);
 NeoPixelAnimator animator(pixelCount, NEO_MILLISECONDS); // NeoPixel animation management object
 
 HsbColor getHsb(int hue, int sat, int bri) {
@@ -104,24 +104,23 @@ class PixelHandler : public LightHandler {
 };
 
 void setup() {
-
+  Serial.begin(115200);// needs to be before strip.Begin() to allow NeoPixel DMA RX pin to work
   // this resets all the neopixels to an off state
   strip.Begin();
   strip.Show();
 
   // Show that the NeoPixels are alive
   delay(120); // Apparently needed to make the first few pixels animate correctly
-  Serial.begin(115200);
+
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   infoLight(white);
 
-  if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    Serial.println("WiFi Failed");
-    // Show that we are connected
+  if (WiFi.status() != WL_CONNECTED) {
+    // Show that we are connecting
     infoLight(red);
-    while (1) delay(100);
+    Serial.print(".");
   }
   
   // Port defaults to 8266
@@ -164,6 +163,7 @@ void setup() {
 }
 
 void loop() {
+  ArduinoOTA.handle();
   LightService.update();
 
   static unsigned long update_strip_time = 0;  //  keeps track of pixel refresh rate... limits updates to 33 Hz
