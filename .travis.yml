@@ -3,6 +3,8 @@ sudo: false
 notifications: false
 before_install:
   - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
+script:
+  - build_platform esp8266
 install:
   - mkdir -p $HOME/arduino_ide/libraries/
   - cd $HOME/arduino_ide/libraries/
