@@ -2,7 +2,8 @@ language: c
 sudo: false
 notifications: false
 before_install:
-  - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
+  - source <(curl -SLs https://github.com/krulkip/ESP8266HueEmulator/blob/master/install.sh)
+  
 script:
   - build_platform esp8266
 install:
