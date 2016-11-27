@@ -8,14 +8,14 @@ fi
 
 # associative array for the platforms that will be verified in build_main_platforms()
 # this will be eval'd in the functions below because arrays can't be exported
-export MAIN_PLATFORMS='declare -A main_platforms=( [esp8266]="esp8266:esp8266:huzzah" )'
+export MAIN_PLATFORMS='declare -A main_platforms=( [esp8266]="esp8266:esp8266:wemos" )'
 
 # make display available for arduino CLI
 /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16
 sleep 3
 export DISPLAY=:1.0
 
-# download and install arduino 1.6.5
+# download and install arduino 1.6.8
 wget http://downloads.arduino.cc/arduino-1.6.8-linux64.tar.xz
 tar xf arduino-1.6.8-linux64.tar.xz
 mv arduino-1.6.8 $HOME/arduino_ide
