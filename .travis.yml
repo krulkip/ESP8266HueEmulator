@@ -4,6 +4,7 @@ notifications: false
 before_install:
   - source <(curl -SLs https://raw.githubusercontent.com/krulkip/ESP8266HueEmulator/master/install.sh)
 install:
+  - arduino --install-library "SPI Library"
   - mkdir -p $HOME/arduino_ide/libraries/
   - cd $HOME/arduino_ide/libraries/ 
   - git clone https://github.com/Makuna/NeoPixelBus.git
