@@ -28,10 +28,9 @@ unsigned int transitionTime = 800; // by default there is a transition time to t
 
 // Settings for the NeoPixels
 #define pixelCount 30
-// strip attached to GPIO3 - RX on wemos D1 mini
-#define pixelPin 3 // Strip is attached to GPIO2 on ESP-01		+// strip attached to GPIO3 - RX on wemos D1 mini
-NeoPixelBus<NeoGrbFeature, NeoEsp8266Uart800KbpsMethod> strip(pixelCount, pixelPin);
-//NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod> strip(pixelCount);
+//#define pixelPin 2
+//NeoPixelBus<NeoGrbFeature, NeoEsp8266Uart800KbpsMethod> strip(pixelCount, pixelPin);
+NeoPixelBus<NeoRgbFeature, Neo800KbpsMethod> strip(pixelCount);// strip attached to GPIO3 - RX on wemos D1 mini
 NeoPixelAnimator animator(pixelCount, NEO_MILLISECONDS); // NeoPixel animation management object
 
 HsbColor getHsb(int hue, int sat, int bri) {
