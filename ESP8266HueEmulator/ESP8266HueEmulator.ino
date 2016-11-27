@@ -10,7 +10,7 @@
 #include <NeoPixelBus.h>
 #include <NeoPixelAnimator.h> // instead of NeoPixelAnimator branch
 #include "LightService.h"
-
+#include <SPI.h>
 // these are only used in LightHandler.cpp, but it seems that the IDE only scans the .ino and real libraries for dependencies
 #include <ESP8266WebServer.h>
 #include "SSDP.h"
