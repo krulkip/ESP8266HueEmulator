@@ -1,11 +1,10 @@
 language: c
 sudo: false
 notifications: false
-script:
-  - build_platform esp8266
 before_install:
   - source <(curl -SLs https://raw.githubusercontent.com/krulkip/ESP8266HueEmulator/master/install.sh)
 install:
+  - arduino --install-library "Adafruit SleepyDog Library,Adafruit FONA Library"
   - mkdir -p $HOME/arduino_ide/libraries/
   - cd $HOME/arduino_ide/libraries/
   - git clone --branch 2.2.4 https://github.com/Makuna/NeoPixelBus.git
