@@ -7,7 +7,7 @@ install:
   - arduino --install-library "Adafruit SleepyDog Library,Adafruit FONA Library"
   - mkdir -p $HOME/arduino_ide/libraries/
   - cd $HOME/arduino_ide/libraries/
-  - git clone --branch 2.2.4 https://github.com/Makuna/NeoPixelBus.git
+  - git clone --branch 2.1.4 https://github.com/Makuna/NeoPixelBus.git
   - git clone https://github.com/interactive-matter/aJson.git
   - sed -i -e 's|#define PRINT_BUFFER_LEN 256|#define PRINT_BUFFER_LEN 4096|g'  aJson/aJSON.h
   - cd -
